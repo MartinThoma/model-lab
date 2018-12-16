@@ -1,0 +1,100 @@
+{
+    "name": "Titanic Survival Model",
+    "parameters": [
+        {
+            "name": "Name",
+            "label": "Name",
+            "type": "str",
+            "comment": "Name of the passenger, e.g. 'Braund, Mr. Owen Harris'"
+        },
+        {
+            "name": "Sex",
+            "label": "Sex",
+            "type": "categorical",
+            "values": ["male", "female"],
+            "comment": ""
+        },
+        {
+            "name": "Pclass",
+            "label": "Pclass",
+            "type": "int",
+            "comment": "Passenger Class: 1 (First Class) is the most expensive one, 3 is the cheapest"
+        },
+        {
+            "name": "Age",
+            "label": "age",
+            "type": "float",
+            "comment": ""
+        },
+        {
+            "name": "SibSp",
+            "label": "SibSp",
+            "type": "float",
+            "comment": "# of siblings / spouses aboard the Titanic"
+        },
+        {
+            "name": "Parch",
+            "label": "Parch",
+            "type": "float",
+            "comment": "# of parents / children aboard the Titanic"
+        },
+        {
+            "name": "Fare",
+            "label": "Fare",
+            "type": "float",
+            "comment": ""
+        },
+        {
+            "name": "Ticket",
+            "label": "Ticket",
+            "type": "str",
+            "comment": ""
+        },
+        {
+            "name": "Embarked",
+            "label": "Embarked",
+            "type": "categorical",
+            "comment": "S / Q / C",
+            "values": ["S", "Q", "C"]
+        }
+    ],
+    "output": [
+        {
+            "name": "Survival Probability",
+            "comment": "Survival probability in [0, 1], where 0 means the model is certain that the passenger did not survive and 1 means it is certain that the passenger survived."
+        }
+    ],
+    "archetypes": [
+        {
+            "name": "The mother",
+            "parameters": {
+                "Name": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)",
+                "Pclass": 1,
+                "Age": 24,
+                "SibSp": 2.0,
+                "Parch": 3.0,
+                "Fare": 7.25,
+                "Sex": "female",
+                "Ticket": "PC 17599",
+                "Embarked": "S"
+            }
+        },
+        {
+            "name": "The father",
+            "parameters": {
+                "Name": "Cumings, Mr. John Bradley (Florence Briggs Thayer)",
+                "Pclass": 1,
+                "Age": 24,
+                "SibSp": 2.0,
+                "Parch": 3.0,
+                "Fare": 7.25,
+                "Sex": "male",
+                "Ticket": "PC 17599",
+                "Embarked": "S"
+            }
+        }
+    ],
+    "info": {
+        "text": "The model was trained on the values of 123 passangers of the titanic where it is known if the did / did not survive.\n\nThe model is an SVM with C = 1.234."
+    }
+}

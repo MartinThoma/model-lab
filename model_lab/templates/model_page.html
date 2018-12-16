@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ description['name'] }}{% endblock %}
+{% block header %}{{ description['name'] }}{% endblock %}
+{% block content %}
+{{ description['name'] }}
+<form action="../id/titanic" method="GET">
+    <div class="twocols">
+    <fieldset style="grid-area: left;">
+        <legend>Model Input</legend>
+        {% for parameter in description['parameters'] %}
+           <p>
+           <label for="{{parameter['name']}}">{{parameter['label']}}</label>
+           {% if parameter['type'] == 'int' %}
+               <input type="number" id="{{parameter['name']}}" name="{{parameter['name']}}" step="1" value="{{args[parameter['name']]}}"/>
+           {% elif parameter['type'] == 'float' %}
+               <input type="number" id="{{parameter['name']}}" name="{{parameter['name']}}" step="0.1" value="{{args[parameter['name']]}}"/>
+           {% elif parameter['type'] == 'str' %}
+               <input type="text" id="{{parameter['name']}}" name="{{parameter['name']}}" value="{{args[parameter['name']]}}"/>
+           {% elif parameter['type'] == 'categorical' %}
+               <select name="{{parameter['name']}}" id="{{parameter['name']}}">
+               {% for value in parameter['values'] %}
+                   <option value="value" {% if value == args[parameter['name']]%}selected{% endif %}>{{value}}</option>
+               {% endfor %}
+               </select>
+           {% else %}
+               Not implemented in model_lab: {{parameter['name']}} has type "{{parameter['type']}}"
+           {% endif %}
+           {{parameter['comment']}}
+           </p>
+        {% endfor %}
+        <input type="submit" value="Apply Model" />
+    </fieldset>
+    <fieldset style="grid-area: right;">
+        <legend>Model Output</legend>
+        {% for parameter in description['output'] %}
+        <p><label for="{{parameter['name']}}">{{parameter['name']}}</label>
+           <input type="text" value="{{inference}}" id="{{parameter['name']}}" />
+           {{parameter['comment']}}</p>
+        {% endfor %}
+    </fieldset>
+    </div>
+</form>
+
+<h2>Input Archetypes</h2>
+{% if description['archetypes']|length > 0 %}
+    <ul>
+    {% for archetype in description['archetypes'] %}
+        <li><a href="?{% for key, value in archetype['parameters'].items() %}&{{key}}={{value}}{%endfor%}">{{archetype['name']}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No archetypes defined</p>
+{% endif %}
+
+<h2>Additional Information</h2>
+<p>{{ description['info']['text'] }}</p>
+{% endblock %}

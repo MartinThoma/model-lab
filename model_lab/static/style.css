@@ -1,0 +1,20 @@
+.twocols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "left right";
+    grid-row-gap: 10px;
+}
+
+fieldset {
+    background-color: #fcfcfc;
+}
+
+
+legend {
+    background-color: #ffffff;
+}
+
+label {
+    width: 100px;
+    display: inline-block;
+}

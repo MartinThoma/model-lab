@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} - Model Lab</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <nav>
+          <h1>{% block header %}{% endblock %}</h1>
+        </nav>
+        <section class="content">
+          {% block content %}{% endblock %}
+        </section>
+    </body>
+</html>
