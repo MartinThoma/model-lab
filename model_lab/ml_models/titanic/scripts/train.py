@@ -120,7 +120,7 @@ def analyze_features(df_features):
 
 
 def train(data):
-    etr = ExtraTreesRegressor(n_estimators=200)
+    etr = ExtraTreesRegressor(n_estimators=10)
     etr.fit(data['train']['x'], np.ravel(data['train']['y']))
     return etr
 

@@ -8,6 +8,14 @@ It might be simply yourself, smoke-testing if the model gets some basic inputs
 right. Or a stakeholder who is not quite convinced that your model performs as
 advertised. Or a colleague whom you want to show what you're working on.
 
+Here you can see how it might look like:
+
+<kbd>
+  <img src="docs/titanic-overview.png" />
+</kbd>
+
+This interface was created from a [`description.json`](./model_lab/ml_models/titanic/description.json)
+
 
 ## Installation
 
@@ -22,8 +30,12 @@ $ pip install -e git+https://github.com/MartinThoma/model_lab.git
 The following command starts a web server:
 
 ```
-$ model_lab start model.zip
+$ python3 run.py
 ```
+
+Simply place your model and additinal files in the `model_lab/ml_models` directory,
+directly next to the `titanic` example.
+
 
 ## model.zip
 
