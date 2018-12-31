@@ -1,5 +1,6 @@
 # core modules
 import glob
+import os
 
 # 3rd party modules
 from flask import render_template, request
@@ -10,7 +11,14 @@ from model_lab.backend import app, MODEL_DIR, load_description, load_model, pars
 
 @app.route('/')
 def index():
-    return str(glob.glob(MODEL_DIR + '/*'))
+    html_list = '<ul>'
+    for glob_path in glob.glob(MODEL_DIR + '/*'):
+        _, name = os.path.split(glob_path)
+        url = 'id/{}'.format(name)
+        html_list += ('<li><a href="{url}">{name}</a></li>'
+                      .format(url=url, name=name))
+    html_list += '</ul>'
+    return html_list
 
 
 @app.route('/id/<string:ml_model>', methods=['GET'])
